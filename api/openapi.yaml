@@ -1,0 +1,3224 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: gautam@balajimariline.com
+    name: BALAJI MARILINE PRIVATE LIMITED
+  description: "e-KYC API , GST verification suite"
+  license:
+    name: BALAJI MARILINE PVT LTD
+    url: http://balajimariline.com
+  title: e-KYC API
+  version: v1
+servers:
+- description: DEV
+  url: http://localhost:1010
+- description: DEV-1
+  url: http://localhost:7979
+- description: UAT
+  url: https://complianceapi.balajimariline.com
+tags:
+- description: Operations related to add NSDL encryption decryption
+  name: NSDL ENC DC Management
+- description: New User Registration related apis
+  name: Registration Management
+- description: Operations related to add GSTIN Utilities
+  name: GSTIN Utility Management
+- description: Operations related to task managemen
+  name: Task Management
+- description: Operations related to electricity bill
+  name: Electricity Bill Details Management
+- description: Operations related to search company master data
+  name: Company Master Details Management
+- description: Operations related to case management
+  name: Case Management
+- description: Operations related to electricity biller
+  name: Electricity Biller Management
+- description: Operations related to bank details verification and management
+  name: Bank Details Management
+- description: Excel related APIS
+  name: Excel Management
+- description: Operations related to profile management
+  name: Profile Management
+- description: Operations related to add GSTIN number and all related operations
+  name: GSTIN Management
+- description: Operations related to Session management
+  name: Session Management
+- description: Operations related to get payment details
+  name: Payment Details Management
+- description: Operations related to IEC details
+  name: IEC Details Management
+- description: Operations related to MCA signatory details
+  name: MCA Signatory Details Management
+- description: Operations related to barcode management
+  name: Barcode Management
+- description: Operations related to all Memeber Of
+  name: Memeber Of Management
+- description: Operations related to PAN Card details
+  name: PAN Management
+- description: Operations related to all service individually
+  name: Utility Management
+- description: Operations related to admin company management
+  name: Admin Company Management
+- description: Operations related to rate master data
+  name: Rate Master Details Management
+- description: Operations related to aadhar company management
+  name: Aadhar Management
+paths:
+  /v1/utility/signatory/details:
+    post:
+      description: Get MCA signatory details from NSDL
+      operationId: getSignatoryDetailsUtility
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MCASignatoryRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get MCA signatory details from NSDL
+      tags:
+      - Utility Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/utility/pan/verify:
+    post:
+      description: Fetch PAN details from NSDL
+      operationId: verifyPANumber
+      parameters:
+      - explode: true
+        in: query
+        name: pan
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Fetch PAN details from NSDL
+      tags:
+      - Utility Management
+      x-accepts: application/json
+  /v1/utility/iec/details:
+    post:
+      description: Get IEC details from NSDL
+      operationId: getIECDetailsUtility
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MCASignatoryRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get IEC details from NSDL
+      tags:
+      - Utility Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/utility/electricity/details:
+    post:
+      description: Get Electricity bill details
+      operationId: getElectricityDetails
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NSDLElectricityBillRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get Electricity bill details
+      tags:
+      - Utility Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/utility/company/master/details:
+    post:
+      description: Update Company Master Details
+      operationId: updateCompanyMasterDetails
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MCACompanyMasterDataRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Update Company Master Details
+      tags:
+      - Utility Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/utility/company/ciin/lookup:
+    post:
+      description: Get MCA signatory details from NSDL
+      operationId: getCompanyLiteDetailsUtility
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MCASignatoryRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get Company Lite Details from NSDL
+      tags:
+      - Utility Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/utility/bank/verify:
+    post:
+      description: Verify new bank details
+      operationId: verifyBankUtility
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankAccountVerification'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Verify new bank details
+      tags:
+      - Utility Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/session/login:
+    post:
+      description: Login
+      operationId: approveRejectCompany
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Login
+      tags:
+      - Session Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/registration/forverify/pan/verify:
+    post:
+      description: Fetch PAN details from NSDL
+      operationId: verifyPANumberForVerify
+      parameters:
+      - explode: true
+        in: query
+        name: pan
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-CLIENT-ID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-CLIENT-SECRET
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Fetch PAN details from NSDL
+      tags:
+      - Registration Management
+      x-accepts: application/json
+  /v1/registration/create/new:
+    post:
+      description: create new case
+      operationId: newRegistration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCompanyRegistrationRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: create new case
+      tags:
+      - Registration Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/razor/create/payment/link:
+    post:
+      description: Create Payment links
+      operationId: updateIECDetails
+      parameters:
+      - explode: true
+        in: query
+        name: amount
+        required: true
+        schema:
+          format: double
+          type: number
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Create payment link
+      tags:
+      - Payment Details Management
+      x-accepts: application/json
+  /v1/rate/new/create:
+    post:
+      description: Create new rate
+      operationId: createNewRate
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Create new rate
+      tags:
+      - Rate Master Details Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/profile/update/password:
+    post:
+      description: Update Password
+      operationId: updatePassword
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordChangeRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Update Password
+      tags:
+      - Profile Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/pan/get/details:
+    post:
+      description: Fetch PAN details from NSDL
+      operationId: getDetailsFromPanNumber
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PanRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Fetch PAN details from NSDL
+      tags:
+      - PAN Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/nsdl/update/signatory/details/{caseId}:
+    post:
+      description: Update MCA signatory details from NSDL
+      operationId: updateSignatoryDetails
+      parameters:
+      - explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MCASignatoryRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Update MCA signatory details from NSDL
+      tags:
+      - MCA Signatory Details Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/nsdl/update/master/details/{caseId}:
+    post:
+      description: Update Company Master Details
+      operationId: updateCompanyMasterDetails_1
+      parameters:
+      - explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MCACompanyMasterDataRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Update Company Master Details
+      tags:
+      - Company Master Details Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/nsdl/update/iec/details/{caseId}:
+    post:
+      description: Update IEC details from NSDL
+      operationId: updateIECDetails_1
+      parameters:
+      - explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MCASignatoryRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Update IEC details from NSDL
+      tags:
+      - IEC Details Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/nsdl/update/electricitybill/details/{caseId}:
+    post:
+      description: Update electricity bill Details
+      operationId: updateElectricityBillFromNSDL
+      parameters:
+      - explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NSDLElectricityBillRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Update electricity bill Details
+      tags:
+      - Electricity Bill Details Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/gstin/update/track/details:
+    post:
+      description: Update GSTIN return track status details GSP
+      operationId: getTrackDetailsGSTIN
+      parameters:
+      - explode: true
+        in: query
+        name: fy
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: type
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GstinRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Update GSTIN return track status details GSP
+      tags:
+      - GSTIN Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/gstin/update/status:
+    post:
+      description: Update GSTIN current status from GSP
+      operationId: getGSTINStatus
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GstinRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Update GSTIN current status from GSP
+      tags:
+      - GSTIN Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/gstin/update/preference/details:
+    post:
+      description: Update GSTIN preference details GSP
+      operationId: getPreferenceDetailsGSTIN
+      parameters:
+      - explode: true
+        in: query
+        name: fy
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GstinRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Update GSTIN preference details GSP
+      tags:
+      - GSTIN Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/gstin/get/all/gstin:
+    post:
+      description: Get all GSTIN
+      operationId: getDetailsGSTIN
+      parameters:
+      - explode: true
+        in: query
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all GSTIN
+      tags:
+      - GSTIN Management
+      x-accepts: application/json
+  /v1/gstin/delete/gstin:
+    post:
+      description: Delete GSTIN details
+      operationId: deleteGSTIN
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GstinRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Delete GSTIN details
+      tags:
+      - GSTIN Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/gstin/add/gstin:
+    post:
+      description: Add new GSTIN
+      operationId: getDetailsGSTIN_1
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GstinRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Add new GSTIN
+      tags:
+      - GSTIN Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/excel/upload:
+    post:
+      description: Upload Excel
+      operationId: uploadExcelFile
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/uploadExcelFile_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Upload Excel
+      tags:
+      - Excel Management
+      x-content-type: multipart/form-data
+      x-accepts: application/json
+  /v1/crypto/encrypt:
+    post:
+      description: Encrypt NSDL request body
+      operationId: encryptData
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Encrypt NSDL request body
+      tags:
+      - NSDL ENC DC Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/crypto/decrypt:
+    post:
+      description: Decrypt NSDL response body
+      operationId: decryptData
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NSDLRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Decrypt NSDL response body
+      tags:
+      - NSDL ENC DC Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/company/block/unblock:
+    post:
+      description: Block Unblock company user
+      operationId: blockUnblocUser
+      parameters:
+      - explode: true
+        in: query
+        name: data
+        required: true
+        schema:
+          $ref: '#/components/schemas/BlockRequestBody'
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Block Unblock company user
+      tags:
+      - Admin Company Management
+      x-accepts: application/json
+  /v1/case/create/new:
+    post:
+      description: Create new case
+      operationId: createNewCase
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCaseRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Create new case
+      tags:
+      - Case Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/barcode/share/barcode:
+    post:
+      description: Share Bar Code
+      operationId: sharebarCode
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BarCodeShareRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Share Bar Code
+      tags:
+      - Barcode Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/bank/delete/bank:
+    post:
+      description: Delete bank Details
+      operationId: deleteBank
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankAccountVerification'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Delete bank details
+      tags:
+      - Bank Details Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/bank/add/verify:
+    post:
+      description: Add and verify new bank details
+      operationId: addNewAndVerify
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankAccountVerification'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Add and verify new bank details
+      tags:
+      - Bank Details Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/aadhar/submit/otp:
+    post:
+      description: Submit aadhar OTP
+      operationId: submitOTP
+      parameters:
+      - explode: true
+        in: query
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitOTP'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Submit aadhar OTP
+      tags:
+      - Aadhar Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/aadhar/send/otp:
+    post:
+      description: Send aadhar OTP
+      operationId: sendOTPAadhar
+      parameters:
+      - explode: true
+        in: query
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UidiaRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Send aadhar OTP
+      tags:
+      - Aadhar Management
+      x-content-type: application/json
+      x-accepts: application/json
+  /v1/utility/ret/type/getall:
+    get:
+      description: Get all return types
+      operationId: getAllReturnType
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all return types
+      tags:
+      - GSTIN Utility Management
+      x-accepts: '*/*'
+  /v1/utility/gstin/get/track/details/{gstin}:
+    get:
+      description: Get GSTIN track details from DB
+      operationId: getTrackDetailsGSTIN_1
+      parameters:
+      - explode: false
+        in: path
+        name: gstin
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: fy
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: type
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get GSTIN track details from DB
+      tags:
+      - GSTIN Utility Management
+      x-accepts: application/json
+  /v1/utility/gstin/get/status/{gstin}:
+    get:
+      description: Get GSTIN status from DB
+      operationId: getGSTINStatus_1
+      parameters:
+      - explode: false
+        in: path
+        name: gstin
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get GSTIN status from DB
+      tags:
+      - GSTIN Utility Management
+      x-accepts: application/json
+  /v1/utility/gstin/get/preference/details/{gstin}:
+    get:
+      description: Get GSTIN preference from DB
+      operationId: getPreferenceDetailsGSTIN_1
+      parameters:
+      - explode: false
+        in: path
+        name: gstin
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: fy
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get GSTIN preference from DB
+      tags:
+      - GSTIN Utility Management
+      x-accepts: application/json
+  /v1/utility/get/track/details/{gstin}:
+    get:
+      description: Get GSTIN track details from GSP
+      operationId: getTrackDetailsGSTINUtility
+      parameters:
+      - explode: false
+        in: path
+        name: gstin
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: fy
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: type
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get GSTIN track details from GSP
+      tags:
+      - Utility Management
+      x-accepts: application/json
+  /v1/utility/get/status/{gstin}:
+    get:
+      description: Get GSTIN status from GSP
+      operationId: getGSTINStatusUtility
+      parameters:
+      - explode: false
+        in: path
+        name: gstin
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get GSTIN status from GSP
+      tags:
+      - Utility Management
+      x-accepts: application/json
+  /v1/utility/get/preference/details/{gstin}:
+    get:
+      description: Get GSTIN preference from GSP
+      operationId: getPreferenceDetailsGSTINUtility
+      parameters:
+      - explode: false
+        in: path
+        name: gstin
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: fy
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get GSTIN preference from GSP
+      tags:
+      - Utility Management
+      x-accepts: application/json
+  /v1/utility/get/details/{gstin}:
+    get:
+      description: Get GSTIN status from GSP
+      operationId: getGSTINDetailsUtility
+      parameters:
+      - explode: false
+        in: path
+        name: gstin
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get GSTIN details from GSP
+      tags:
+      - Utility Management
+      x-accepts: application/json
+  /v1/utility/get/all/member:
+    get:
+      description: Get All Memeber
+      operationId: getAllMemeber
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get All Memeber
+      tags:
+      - Memeber Of Management
+      x-accepts: application/json
+  /v1/utility/get/all/details:
+    get:
+      description: Get Individual Details from DB
+      operationId: getAllDetailsFromDB
+      parameters:
+      - explode: true
+        in: query
+        name: filter
+        required: true
+        schema:
+          enum:
+          - PAN
+          - GSTIN
+          - BANK
+          - IEC
+          - ELECTRICITY
+          - SIGNATORY
+          - MASTERDATA
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get All Details
+      tags:
+      - Utility Management
+      x-accepts: application/json
+  /v1/utility/fy/getall:
+    get:
+      description: Get all finacial years
+      operationId: getAllFy
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all finacial years
+      tags:
+      - GSTIN Utility Management
+      x-accepts: '*/*'
+  /v1/task/execute:
+    get:
+      description: Execute Task
+      operationId: executeTask
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Execute Task
+      tags:
+      - Task Management
+      x-accepts: application/json
+  /v1/session/logout:
+    get:
+      description: Get all case
+      operationId: approveRejectCompany_1
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all case
+      tags:
+      - Session Management
+      x-accepts: application/json
+  /v1/registration/forverify/get/details/{gstin}:
+    get:
+      description: Get GSTIN status from GSP
+      operationId: getGSTINDetailsUtilityForVerify
+      parameters:
+      - explode: false
+        in: path
+        name: gstin
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-CLIENT-ID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-CLIENT-SECRET
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get GSTIN details from GSP
+      tags:
+      - Registration Management
+      x-accepts: application/json
+  /v1/razor/get/payment/details/{paymentId}:
+    get:
+      description: Create Payment links
+      operationId: getPaymentDetails
+      parameters:
+      - explode: false
+        in: path
+        name: paymentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Create payment link
+      tags:
+      - Payment Details Management
+      x-accepts: application/json
+  /v1/razor/get/all/payments/details:
+    get:
+      description: Get All payments
+      operationId: getPaymentDetails_1
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: All Payments
+      tags:
+      - Payment Details Management
+      x-accepts: application/json
+  /v1/rate/get/services:
+    get:
+      description: Get all services
+      operationId: getAllServices
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all Services
+      tags:
+      - Rate Master Details Management
+      x-accepts: application/json
+  /v1/rate/get/all:
+    get:
+      description: Get all rates
+      operationId: getAllRates
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all rates
+      tags:
+      - Rate Master Details Management
+      x-accepts: application/json
+  /v1/profile/send/reset/link:
+    get:
+      description: Update Password
+      operationId: sendPasswordResetLink
+      parameters:
+      - explode: true
+        in: query
+        name: data
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Update Password
+      tags:
+      - Profile Management
+      x-accepts: application/json
+  /v1/profile/send/password/otp/{companyId}:
+    get:
+      description: Send Password change OTP email
+      operationId: sendOTPForPasswordChange
+      parameters:
+      - explode: false
+        in: path
+        name: companyId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Send Password change OTP email
+      tags:
+      - Profile Management
+      x-accepts: application/json
+  /v1/profile/get/profile/{companyId}:
+    get:
+      description: Get Company Profile
+      operationId: getProfile
+      parameters:
+      - explode: false
+        in: path
+        name: companyId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get Company Profile
+      tags:
+      - Profile Management
+      x-accepts: application/json
+  /v1/profile/get/profile/balance:
+    get:
+      description: Get Balance
+      operationId: getBalance
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get Balance
+      tags:
+      - Profile Management
+      x-accepts: application/json
+  /v1/pan/get/details/bycase:
+    get:
+      description: Fetch PAN details from DB Case ID
+      operationId: getDetailsFromPanNumberFromCAse
+      parameters:
+      - explode: true
+        in: query
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Fetch PAN details from DB Case ID
+      tags:
+      - PAN Management
+      x-accepts: application/json
+  /v1/nsdl/get/signatory/details/{caseId}:
+    get:
+      description: Get MCA signatory details from DB
+      operationId: getSignatoryDetails
+      parameters:
+      - explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get MCA signatory details from DB
+      tags:
+      - MCA Signatory Details Management
+      x-accepts: application/json
+  /v1/nsdl/get/master/details/{caseId}:
+    get:
+      description: Get company master details from DB
+      operationId: getCompanyMasterDetails
+      parameters:
+      - explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get company master details from DB
+      tags:
+      - Company Master Details Management
+      x-accepts: application/json
+  /v1/nsdl/get/iec/details/{caseId}:
+    get:
+      description: Get IEC details from DB
+      operationId: getIECDetails
+      parameters:
+      - explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get IEC details from DB
+      tags:
+      - IEC Details Management
+      x-accepts: application/json
+  /v1/nsdl/get/electricitybill/details/{caseId}:
+    get:
+      description: Get electricity bill details from DB
+      operationId: updateElectricityBillFromDB
+      parameters:
+      - explode: false
+        in: path
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get electricity bill details from DB
+      tags:
+      - Electricity Bill Details Management
+      x-accepts: application/json
+  /v1/excel/getall/uploadid:
+    get:
+      description: Get All Upload Id
+      operationId: getAllUploadId
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get All Upload Id
+      tags:
+      - Excel Management
+      x-accepts: application/json
+  /v1/excel/get/uploadid/records:
+    get:
+      description: Get All Record inside Upload Id
+      operationId: getAllUploadIdRecords
+      parameters:
+      - explode: true
+        in: query
+        name: uploadId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get All Record inside Upload Id
+      tags:
+      - Excel Management
+      x-accepts: application/json
+  /v1/company/get/details/{companyCode}:
+    get:
+      description: Get company by code
+      operationId: getCompanyCode
+      parameters:
+      - explode: false
+        in: path
+        name: companyCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get company by code
+      tags:
+      - Admin Company Management
+      x-accepts: application/json
+  /v1/company/get/details/byfilter:
+    get:
+      description: Get company by code
+      operationId: getCompanyCodeDetailsFilter
+      parameters:
+      - explode: true
+        in: query
+        name: key
+        required: true
+        schema:
+          enum:
+          - NAME
+          - MOBILE
+          - EMAIL
+          - PAN
+          - GSTIN
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: value
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get company by code
+      tags:
+      - Admin Company Management
+      x-accepts: application/json
+  /v1/company/get/all:
+    get:
+      description: Get all company
+      operationId: getAllCompany
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all company
+      tags:
+      - Admin Company Management
+      x-accepts: application/json
+  /v1/company/get/all/forapproval:
+    get:
+      description: Get all registration for approval
+      operationId: getAllCompanyForApproval
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all registration for approval
+      tags:
+      - Admin Company Management
+      x-accepts: application/json
+  /v1/company/get/all/emailnotapproved:
+    get:
+      description: Get all registration whose email is not verified
+      operationId: getAllCompanyNoEmailApproved
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all registration whose email is not verified
+      tags:
+      - Admin Company Management
+      x-accepts: application/json
+  /v1/company/get/all/approved/rejected:
+    get:
+      description: Get all approved or rejected registration applications
+      operationId: getAllCompanyForApproval_1
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: status
+        required: true
+        schema:
+          enum:
+          - "TRUE"
+          - "FALSE"
+          - BLOCKED
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all approved or rejected registration applications
+      tags:
+      - Admin Company Management
+      x-accepts: application/json
+  /v1/company/approve/reject:
+    get:
+      description: Approve reject company registration
+      operationId: approveRejectCompany_2
+      parameters:
+      - explode: true
+        in: query
+        name: companyId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: status
+        required: true
+        schema:
+          enum:
+          - "TRUE"
+          - "FALSE"
+          - BLOCKED
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Approve reject company registration
+      tags:
+      - Admin Company Management
+      x-accepts: application/json
+  /v1/case/get/all/case:
+    get:
+      description: Get all case fro company
+      operationId: getAllCase
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all case fro company
+      tags:
+      - Case Management
+      x-accepts: application/json
+  /v1/case/admin/get/all/case:
+    get:
+      description: Get all case fro company
+      operationId: getAllCaseAdmin
+      parameters:
+      - explode: true
+        in: query
+        name: companyId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all case fro company
+      tags:
+      - Case Management
+      x-accepts: application/json
+  /v1/biller/get/all/state:
+    get:
+      description: Get all state
+      operationId: getAllState
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all state
+      tags:
+      - Electricity Biller Management
+      x-accepts: application/json
+  /v1/biller/get/all/bystate/{state}:
+    get:
+      description: Get all electricity biller by state
+      operationId: getAllBillerByState
+      parameters:
+      - explode: false
+        in: path
+        name: state
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all electricity biller by state
+      tags:
+      - Electricity Biller Management
+      x-accepts: application/json
+  /v1/biller/get/all/biller:
+    get:
+      description: Get all electricity biller
+      operationId: getAllBiller
+      parameters:
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all electricity biller
+      tags:
+      - Electricity Biller Management
+      x-accepts: application/json
+  /v1/barcode/get/signatory/details:
+    get:
+      description: Get MCA signatory details from Barcode
+      operationId: getSignatoryDetailsFromBarcode
+      parameters:
+      - explode: true
+        in: query
+        name: barcodeToken
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get MCA signatory details from Barcode
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/barcode/get/pan/details:
+    get:
+      description: Fetch PAN details from Barcode
+      operationId: getDetailsFromPanNumberBarcode
+      parameters:
+      - explode: true
+        in: query
+        name: barcodeToken
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Fetch PAN details from Barcode
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/barcode/get/master/details:
+    get:
+      description: Get company master details from barcode
+      operationId: getCompanyMasterDetailsFromBarcode
+      parameters:
+      - explode: true
+        in: query
+        name: barcodeToken
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get company master details from barcode
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/barcode/get/iec/details:
+    get:
+      description: Get IEC details from Barcode
+      operationId: getIECDetailsFromBarcode
+      parameters:
+      - explode: true
+        in: query
+        name: barcodeToken
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get IEC details from Barcode
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/barcode/get/gstin/track/details/{gstin}:
+    get:
+      description: Get GSTIN track details from DB
+      operationId: getTrackDetailsGSTINBarcode
+      parameters:
+      - explode: false
+        in: path
+        name: gstin
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: fy
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: type
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: barcode
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get GSTIN track details from DB
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/barcode/get/gstin/status/{gstin}:
+    get:
+      description: Get GSTIN status from DB
+      operationId: getGSTINStatusBarcode
+      parameters:
+      - explode: false
+        in: path
+        name: gstin
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: barcode
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get GSTIN status from DB
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/barcode/get/gstin/preference/details/{gstin}:
+    get:
+      description: Get GSTIN preference from DB
+      operationId: getPreferenceDetailsGSTINBarcode
+      parameters:
+      - explode: false
+        in: path
+        name: gstin
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: fy
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: barcode
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get GSTIN preference from DB
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/barcode/get/gstin/details:
+    get:
+      description: Get all GSTIN From Barcode
+      operationId: getDetailsGSTINBarcode
+      parameters:
+      - explode: true
+        in: query
+        name: barcodeToken
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all GSTIN From Barcode
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/barcode/get/electricity/details:
+    get:
+      description: Get Electricity Bill Details from Barcode
+      operationId: getElectricityDetails_1
+      parameters:
+      - explode: true
+        in: query
+        name: barcodeToken
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get Electricity Bill Details from Barcode
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/barcode/get/bank/details:
+    get:
+      description: Get all bank details from barcode
+      operationId: getAllBankFromBarcode
+      parameters:
+      - explode: true
+        in: query
+        name: barcodeToken
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all bank details from barcode
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/barcode/get/aadhar/details:
+    get:
+      description: Get aadhar details Details from Barcode
+      operationId: getAadharDetails
+      parameters:
+      - explode: true
+        in: query
+        name: barcodeToken
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get aadhar details from Barcode
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/barcode/generatre/barcode:
+    get:
+      description: Create new barcode
+      operationId: createNewBarCode
+      parameters:
+      - explode: true
+        in: query
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Create new barcode
+      tags:
+      - Barcode Management
+      x-accepts: application/json
+  /v1/bank/get/all:
+    get:
+      description: Get all bank details
+      operationId: getAllBank
+      parameters:
+      - explode: true
+        in: query
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get all bank details
+      tags:
+      - Bank Details Management
+      x-accepts: application/json
+  /v1/aadhar/get/all/aadhar:
+    get:
+      description: Submit aadhar OTP
+      operationId: getAllAadhar
+      parameters:
+      - explode: true
+        in: query
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Get aadhar details
+      tags:
+      - Aadhar Management
+      x-accepts: application/json
+  /v1/aadhar/delete/aadhar:
+    get:
+      description: Delete aadhar OTP
+      operationId: deleteAadhar
+      parameters:
+      - explode: true
+        in: query
+        name: caseId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: aadharNumber
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - explode: false
+        in: header
+        name: X-AUTH-TOKEN
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+          description: OK
+      summary: Delete aadhar details
+      tags:
+      - Aadhar Management
+      x-accepts: application/json
+components:
+  schemas:
+    CaseDetails:
+      example:
+        caseId: caseId
+      properties:
+        caseId:
+          type: string
+      type: object
+    MCASignatoryRequest:
+      example:
+        iec: iec
+        companyName: companyName
+        cin: cin
+        clientData:
+          caseId: caseId
+        consent: consent
+      properties:
+        consent:
+          type: string
+        cin:
+          type: string
+        iec:
+          type: string
+        companyName:
+          type: string
+        clientData:
+          $ref: '#/components/schemas/CaseDetails'
+      required:
+      - clientData
+      - consent
+      type: object
+    APIResponse:
+      example:
+        uniqueRequestId: uniqueRequestId
+        httpstatuscode: 100 CONTINUE
+        data: "{}"
+        requestDateTime: 2000-01-23T04:56:07.000+00:00
+        message: message
+        barcode: barcode
+        statusCode: 0
+      properties:
+        statusCode:
+          format: int32
+          type: integer
+        requestDateTime:
+          format: date-time
+          type: string
+        httpstatuscode:
+          enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 EARLY_HINTS
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+          type: string
+        message:
+          type: string
+        data:
+          type: object
+        uniqueRequestId:
+          type: string
+        barcode:
+          type: string
+      type: object
+    NSDLElectricityBillRequest:
+      example:
+        consumer_id: consumer_id
+        service_provider: service_provider
+        regMobileNo: regMobileNo
+        clientData:
+          caseId: caseId
+        consent: consent
+      properties:
+        consent:
+          type: string
+        consumer_id:
+          type: string
+        service_provider:
+          type: string
+        regMobileNo:
+          type: string
+        clientData:
+          $ref: '#/components/schemas/CaseDetails'
+      required:
+      - clientData
+      - consent
+      type: object
+    MCACompanyMasterDataRequest:
+      example:
+        active_compliance: true
+        cin: cin
+        clientData:
+          caseId: caseId
+        consent: consent
+      properties:
+        consent:
+          type: string
+        cin:
+          type: string
+        active_compliance:
+          type: boolean
+        clientData:
+          $ref: '#/components/schemas/CaseDetails'
+      required:
+      - clientData
+      - consent
+      type: object
+    BankAccountVerification:
+      example:
+        phone: phone
+        caseId: caseId
+        name: name
+        ifsc: ifsc
+        bank_account: bank_account
+      properties:
+        bank_account:
+          type: string
+        ifsc:
+          type: string
+        name:
+          type: string
+        phone:
+          type: string
+        caseId:
+          type: string
+      required:
+      - bank_account
+      - caseId
+      - ifsc
+      - name
+      - phone
+      type: object
+    LoginRequestBody:
+      example:
+        password: password
+        username: username
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+      - password
+      - username
+      type: object
+    NewCompanyRegistrationRequest:
+      example:
+        gstinTradeName: gstinTradeName
+        address: address
+        companyType: companyType
+        memeberId: 6
+        gstinctb: gstinctb
+        companyName: companyName
+        authSignEmail: authSignEmail
+        panNumber: panNumber
+        gstinNumber: gstinNumber
+        authSignMobile: 0
+        gstinLegalName: gstinLegalName
+      properties:
+        companyName:
+          type: string
+        authSignEmail:
+          type: string
+        authSignMobile:
+          format: int64
+          type: integer
+        panNumber:
+          type: string
+        gstinNumber:
+          type: string
+        companyType:
+          type: string
+        gstinctb:
+          type: string
+        gstinLegalName:
+          type: string
+        gstinTradeName:
+          type: string
+        address:
+          type: string
+        memeberId:
+          format: int64
+          type: integer
+      required:
+      - address
+      - authSignEmail
+      - companyName
+      - companyType
+      - gstinLegalName
+      - gstinNumber
+      - gstinTradeName
+      - gstinctb
+      - panNumber
+      type: object
+    RateRequest:
+      example:
+        cost: 0.8008281904610115
+        service: PAN_NUMBER
+      properties:
+        cost:
+          format: double
+          type: number
+        service:
+          enum:
+          - PAN_NUMBER
+          - GSTIN_INFO
+          - GSTIN_STATUS
+          - GSTIN_TRACK
+          - GSTIN_PREF
+          - BANK
+          - MCA_MASTER_DATA
+          - MCA_SIGNATORY
+          - MCA_IEC
+          - MCA_ADDRESS
+          - REGISTRATION
+          - WALLET_LOAD
+          - ELECTRICITY_BILL
+          - AADHAR_NUMBER
+          type: string
+      type: object
+    PasswordChangeRequest:
+      example:
+        companyId: companyId
+        newPassword: newPassword
+        otp: otp
+      properties:
+        companyId:
+          type: string
+        otp:
+          type: string
+        newPassword:
+          maxLength: 2147483647
+          minLength: 8
+          type: string
+      required:
+      - companyId
+      - otp
+      type: object
+    PanRequestBody:
+      example:
+        caseId: caseId
+        name: name
+        pan: pan
+      properties:
+        name:
+          type: string
+        pan:
+          pattern: "[A-Z]{5}[0-9]{4}[A-Z]{1}"
+          type: string
+        caseId:
+          type: string
+      required:
+      - caseId
+      - name
+      - pan
+      type: object
+    GstinRequest:
+      example:
+        caseId: caseId
+        gstinNumber: gstinNumber
+      properties:
+        gstinNumber:
+          pattern: "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$"
+          type: string
+        caseId:
+          type: string
+      required:
+      - caseId
+      - gstinNumber
+      type: object
+    NSDLRequestBody:
+      example:
+        data: data
+        requestId: requestId
+        version: version
+        symmetricKey: symmetricKey
+        hash: hash
+        timestamp: timestamp
+      properties:
+        data:
+          type: string
+        version:
+          type: string
+        symmetricKey:
+          type: string
+        hash:
+          type: string
+        timestamp:
+          type: string
+        requestId:
+          type: string
+      required:
+      - data
+      - hash
+      - symmetricKey
+      type: object
+    BlockRequestBody:
+      properties:
+        companyId:
+          type: string
+        blockRemark:
+          type: string
+        enums:
+          enum:
+          - "TRUE"
+          - "FALSE"
+          - BLOCKED
+          type: string
+      required:
+      - blockRemark
+      - companyId
+      type: object
+    NewCaseRequestBody:
+      example:
+        barCodeStatus: "TRUE"
+        companyType: companyType
+        caseId: caseId
+        caseDescription: caseDescription
+        caseName: caseName
+        barcode: barcode
+      properties:
+        caseId:
+          type: string
+        caseName:
+          type: string
+        caseDescription:
+          type: string
+        companyType:
+          type: string
+        barcode:
+          type: string
+        barCodeStatus:
+          enum:
+          - "TRUE"
+          - "FALSE"
+          - BLOCKED
+          type: string
+      required:
+      - caseDescription
+      - caseName
+      - companyType
+      type: object
+    BarCodeShareRequestBody:
+      example:
+        emailIds:
+        - emailIds
+        - emailIds
+        caseId: caseId
+      properties:
+        caseId:
+          type: string
+        emailIds:
+          items:
+            type: string
+          type: array
+      required:
+      - caseId
+      type: object
+    SubmitOTP:
+      example:
+        otp: otp
+        transactionId: transactionId
+      properties:
+        otp:
+          type: string
+        transactionId:
+          type: string
+      type: object
+    UidiaRequestBody:
+      example:
+        uid: uid
+        uniqueId: uniqueId
+      properties:
+        uniqueId:
+          type: string
+        uid:
+          type: string
+      type: object
+    uploadExcelFile_request:
+      properties:
+        file:
+          format: binary
+          type: string
+      required:
+      - file
+      type: object
+
